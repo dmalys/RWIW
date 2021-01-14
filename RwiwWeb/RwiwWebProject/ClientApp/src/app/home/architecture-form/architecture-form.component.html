@@ -1,0 +1,72 @@
+<form class="architecture-form" [formGroup]="architectureForm" (ngSubmit)="submitArchitecture()">
+
+  <label>
+    <span class="field-label">Dependency Number</span>
+    <input type="number" formControlName="dependencyNumber">
+
+    <span class="field-invalid" *ngIf="architectureForm.get('dependencyNumber').errors?.min">
+      Only positive values are allowed
+    </span>
+
+    <span class="field-invalid" *ngIf="architectureForm.get('dependencyNumber').errors?.required">
+      This field is required
+    </span>
+  </label>
+
+  <label>
+    <span class="field-label">Acceptable Downtime</span>
+    <input type="number" formControlName="acceptableDowntime">
+
+    <span class="field-invalid" *ngIf="architectureForm.get('acceptableDowntime').errors?.min">
+      Only positive values are allowed
+    </span>
+
+    <span class="field-invalid" *ngIf="architectureForm.get('acceptableDowntime').errors?.required">
+      This field is required
+    </span>
+  </label>
+
+  <label>
+    <span class="field-label">Syncronic User Number</span>
+    <input type="number" formControlName="syncronicUserNumber">
+
+    <span class="field-invalid" *ngIf="architectureForm.get('syncronicUserNumber').errors?.min">
+      Only positive values are allowed
+    </span>
+
+    <span class="field-invalid" *ngIf="architectureForm.get('syncronicUserNumber').errors?.required">
+      This field is required
+    </span>
+  </label>
+
+  <label>
+    <span class="field-label">Packet Number Per Session</span>
+    <input type="number" formControlName="packetNumberPerSession">
+
+    <span class="field-invalid" *ngIf="architectureForm.get('packetNumberPerSession').errors?.min">
+      Only positive values are allowed
+    </span>
+
+    <span class="field-invalid" *ngIf="architectureForm.get('packetNumberPerSession').errors?.required">
+      This field is required
+    </span>
+  </label>
+
+  <label>
+    <span class="field-label">Application Complexity</span>
+    <select formControlName="applicationComplexity">
+      <option value="" disabled selected hidden>Please select...</option>
+      <option *ngFor="let complexity of complexities" [value]="complexity.id">{{ complexity.label }}</option>
+    </select>
+  </label>
+
+  <label>
+    <span class="field-label">Data Type Used</span>
+    <select formControlName="dataTypeUsed">
+      <option value="" disabled selected hidden>Please select...</option>
+      <option *ngFor="let dataType of dataTypes" [value]="dataType.id">{{ dataType.label }}</option>
+    </select>
+  </label>
+
+  <button type="submit" [disabled]="!architectureForm.valid">Submit</button>
+</form>

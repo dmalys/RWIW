@@ -1,0 +1,14 @@
+<div *ngIf="!(result$ | async); else resultBox" class="form-container">
+  <p>Architecture form</p>
+  <app-architecture-form></app-architecture-form>
+</div>
+
+<ng-template #resultBox>
+  <div class="result-box">
+    <span class="result-box__header">Recommended architecture type:</span>
+    <p class="result-box__recommended-type">{{ (result$ | async).architectureTypeChosen }}</p>
+
+    Reasoning: {{ (result$ | async).responseDecision }}
+    <a (click)="clearResult()">&larr; Back</a>
+  </div>
+</ng-template>
